@@ -1,0 +1,75 @@
+<div class="card my-auto border-0 mx-auto">
+    <div class="card-header" >
+        <h2 style="text-align:center">Registration Form</h2>
+    </div>
+    <div class="card-body w-75 mx-auto">
+        <form [formGroup]="registrationForm" (ngSubmit)="register()" class="form-group">
+            <div class="form-group row my-1">
+                <label for="Name" class="col-4" style="text-align:right">Name:</label>
+                <input type="text" name="name" id="name" class="form-control col-4" formControlName="name">
+                <div *ngIf="rf.name.touched && rf.name.errors" class="col-4">
+                    <small class="red" *ngIf="rf.name.errors.required">
+                        Name is required!!
+                    </small>
+                    <small class="red" *ngIf="rf.name.errors.minlength">
+                        Minimum 3 characters required!!
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row my-1">
+                <label for="Email" class="col-4" style="text-align:right">Email:</label>
+                <input type="email" name="email" id="email" class="form-control col-4" formControlName="email">
+                <div *ngIf="rf.email.touched && rf.email.errors"  class="col-4">
+                    <small class="red" *ngIf="rf.email.errors.email">
+                        Please enter a valid email!!
+                    </small>
+                    <small class="red" *ngIf="rf.email.errors.required">
+                        Email is required
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row my-1">
+                <label for="Password" class="col-4" style="text-align:right">Password:</label>
+                <input type="password" name="password" id="password" class="form-control col-4" formControlName="password">
+                <div *ngIf="rf.password.touched && rf.password.errors"  class="col-4">
+                    <small class="red" *ngIf="rf.password.errors.required">
+                        Password is required
+                    </small>
+                    <small class="red" *ngIf="rf.password.errors?.notValid">
+                        {{rf.password.errors.notValid}}
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row my-1">
+                <label for="phone" class="col-4" style="text-align:right">Mobile no: </label>
+                <input type="text" name="phone" id="phone" class="form-control col-4" formControlName="phone">
+                <div *ngIf="rf.phone.touched && rf.phone.errors"  class="col-4">
+                    <small class="red" *ngIf="rf.phone.errors.required">
+                        Mobile no. is required
+                    </small>    
+                    <small class="red" *ngIf="rf.phone.errors.pattern">
+                        Please enter valid Mobile no.
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row my-2">
+                <button type="submit" [disabled]="!registrationForm.valid" class="btn btn-dark border-success mx-auto">Submit</button>
+            </div>
+        </form>
+        <div *ngIf="isClicked">
+            <div>
+                <label style="text-align:center">Name:</label>
+                {{data.name}}
+            </div>
+            <div>
+                    <label style="text-align:center">Email:</label>
+                    {{data.email}}
+            </div>
+            <div>
+                    <label style="text-align:center">Phone:</label>
+                    {{data.phone}}
+            </div>
+        </div>
+    </div>
+
+</div>
